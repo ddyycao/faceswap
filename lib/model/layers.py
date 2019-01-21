@@ -264,6 +264,13 @@ class SubPixelUpscaling(Layer):
         base_config = super(SubPixelUpscaling, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
 
+class ReflectionPadding2D(ZeroPadding2D):
+    def call(self, x, mask=None):
+        pattern = [[0, 0],
+                   [self.padding[0][0], self.padding[0][1]],
+                   [self.padding[1][0], self.padding[1][1]],
+                   [0, 0]]
+        return tf.pad(x, pattern, mode='REFLECT')
 
 class ReflectionPadding2D(Layer):
     def __init__(self, stride=2, kernel_size=5, **kwargs):
