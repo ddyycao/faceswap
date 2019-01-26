@@ -8,6 +8,7 @@ import numpy as np
 
 from lib.umeyama import umeyama
 from lib.align_eyes import align_eyes as func_align_eyes, FACIAL_LANDMARKS_IDXS
+from lib.utils import get_matrix_scaling
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
